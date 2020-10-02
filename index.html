@@ -62,8 +62,10 @@
                 let segundos = inputSegundos.value;
 
                 setInterval(() => {
-                    contagemElement.innerHTML = segundos;
-                    segundos = segundos - 1;
+                    if (segundos >= 0) {
+                        contagemElement.innerHTML = segundos;
+                        segundos = segundos - 1;
+                    }
                 }, 1000);
             }
         </script>       
