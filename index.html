@@ -54,6 +54,19 @@
                 font-size: 30px;
             }
         </style>
+
+        <script>
+            function start() {
+                const inputSegundos = document.querySelector('#segundos');
+                const contagemElement = document.querySelector('#contagem');
+                let segundos = inputSegundos.value;
+
+                setInterval(() => {
+                    contagemElement.innerHTML = segundos;
+                    segundos = segundos - 1;
+                }, 1000);
+            }
+        </script>       
     </head>
     <body>
         <main>
@@ -61,7 +74,7 @@
                 <h1>Countdown Clock</h1>
 
                 <input class="campo" type="number" id="segundos">
-                <button>START</button>
+                <button onclick="start()">START</button>
                 <div id="contagem"></div>
             </div>
         </main>
