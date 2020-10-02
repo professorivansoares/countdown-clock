@@ -59,10 +59,14 @@
             function start() {
                 const inputSegundos = document.querySelector('#segundos');
                 const contagemElement = document.querySelector('#contagem');
+                contagemElement.style.color = 'green';
                 let segundos = inputSegundos.value;
 
                 setInterval(() => {
                     if (segundos >= 0) {
+                        if (segundos <= 3) {
+                            contagemElement.style.color = 'red';
+                        }
                         contagemElement.innerHTML = segundos;
                         segundos = segundos - 1;
                     }
