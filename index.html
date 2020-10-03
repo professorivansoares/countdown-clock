@@ -22,7 +22,6 @@
             .cronometro {
                 width: 400px;
                 text-align: center;
-
                 padding: 30px;
             }
 
@@ -56,21 +55,49 @@
         </style>
 
         <script>
+            let contador;
+            let segundos;
             function start() {
+                if (contador) {
+                    clearInterval(contador);
+                }
+
                 const inputSegundos = document.querySelector('#segundos');
                 const contagemElement = document.querySelector('#contagem');
-                contagemElement.style.color = 'green';
-                let segundos = inputSegundos.value;
+                
+                if (!segundos) segundos = inputSegundos.value;
 
-                setInterval(() => {
+                contador = setInterval(() => {
                     if (segundos >= 0) {
                         if (segundos <= 3) {
                             contagemElement.style.color = 'red';
+                        } else {
+                            contagemElement.style.color = 'green';
                         }
                         contagemElement.innerHTML = segundos;
                         segundos = segundos - 1;
+                    } else {
+                        clearInterval(this);
                     }
                 }, 1000);
+            }
+
+            function pause() {
+                if (contador) {
+                    clearInterval(contador);
+                }
+            }
+
+            function stop() {
+                if (contador) {
+                    clearInterval(contador);
+
+                    const inputSegundos = document.querySelector('#segundos');
+                    const contagemElement = document.querySelector('#contagem');
+                    inputSegundos.value = 0;
+                    contagemElement.innerHTML = 0;
+                    segundos = null;
+                }
             }
         </script>       
     </head>
@@ -81,6 +108,8 @@
 
                 <input class="campo" type="number" id="segundos">
                 <button onclick="start()">START</button>
+                <button onclick="pause()">PAUSE</button>
+                <button onclick="stop()">STOP</button>
                 <div id="contagem"></div>
             </div>
         </main>
